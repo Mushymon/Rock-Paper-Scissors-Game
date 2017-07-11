@@ -2,6 +2,7 @@
 from __future__ import print_function
 from Tkinter import *
 import ttk
+import sys
 from random import randint
 import time
 
@@ -61,9 +62,6 @@ class RockPaperScissors(object):
     def player_hand(self, value):
         """Determines what state the player's hand is in: rock, paper, or scissors"""
 
-        # Slows down the pace of the game with pauses
-        time.sleep(0.25)
-
         # r = rock, p = paper, s = scissors
         if value == 'r':
 
@@ -96,7 +94,7 @@ class RockPaperScissors(object):
         random_hand = randint(1, 3)
 
         # Slows down the pace of the game with pauses
-        time.sleep(0.75)
+        self.loading(0.5)
 
         if random_hand == 1:
 
@@ -127,7 +125,7 @@ class RockPaperScissors(object):
         who the winner of the round is."""
 
         # Slows down the pace of the game with pauses
-        time.sleep(0.5)
+        self.loading(0.25)
 
         # If the round ends in a tie, the try_again will be set to true so that the program knows
         # to restart the round without incrementing the round number or changing the win/lose record
@@ -188,21 +186,32 @@ class RockPaperScissors(object):
         """Function that displays on screen that the player has won."""
 
         self.summary = (" " * 83) + "YOU WIN"
-        print("Player wins against opponent.")
+        print("Player wins against opponent.\n")
         self.player_wins += 1
 
     def player_lose(self):
         """Function that displays on screen that the opponent has won."""
 
         self.summary = (" " * 83) + "YOU LOSE"
-        print("Player loses against opponent.")
+        print("Player loses against opponent.\n")
         self.opp_wins += 1
 
     def player_tie(self):
         """Function that displays on screen that the round ended in a draw."""
 
         self.summary = (" "* 78) + "TIE. TRY AGAIN"
-        print("Match ends in a draw.")
+        print("Match ends in a draw.\n")
+
+    def loading(self, delay):
+        """Function that simulates the game loading."""
+
+        for i in range(3):
+
+            print(".", end="")
+            sys.stdout.flush()
+            time.sleep(delay)
+
+        print("")
 
     def __init__(self, ROOT):
 
