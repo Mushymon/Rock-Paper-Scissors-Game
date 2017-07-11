@@ -202,7 +202,8 @@ class RockPaperScissors(object):
         self.summary = (" "* 78) + "TIE. TRY AGAIN"
         print("Match ends in a draw.\n")
 
-    def loading(self, delay):
+    @staticmethod
+    def loading(delay):
         """Function that simulates the game loading."""
 
         for i in range(3):
