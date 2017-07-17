@@ -1,9 +1,8 @@
 """Rock-Paper-Scissors game designed by Calvin Liu"""
-from __future__ import print_function
-from Tkinter import *
+import Tkinter
 import ttk
 import sys
-from random import randint
+import random
 import time
 
 class RockPaperScissors(object):
@@ -91,7 +90,7 @@ class RockPaperScissors(object):
         """Randomly generates a hand for the opponent using randint() function"""
 
         # 1 = rock, 2 = paper, 3 = scissors
-        random_hand = randint(1, 3)
+        random_hand = random.randint(1, 3)
 
         # Slows down the pace of the game with pauses
         self.loading(0.5)
@@ -103,7 +102,7 @@ class RockPaperScissors(object):
             print("Opponent chose Rock.")
 
         elif random_hand == 2:
- 
+
             opp_hand_value = (" " * 72) + "OPPONENT:   PAPER"
             self.opp_paper = True
             print("Opponent chose Paper.")
@@ -208,38 +207,38 @@ class RockPaperScissors(object):
 
         for i in range(3):
 
-            print(".", end="")
+            print ".",
             sys.stdout.flush()
             time.sleep(delay)
 
         print("")
 
-    def __init__(self, ROOT):
+    def __init__(self, root):
 
         # These variables will display the following strings when the game is ran
-        self.round_val = StringVar(
-            ROOT, value="Welcome to the Rock-Paper-Scissors App developed by Calvin Liu")
+        self.round_val = Tkinter.StringVar(
+            root, value="Welcome to the Rock-Paper-Scissors App developed by Calvin Liu")
 
-        self.opp_hand_val = StringVar(
-            ROOT, value="Your opponent is waiting for you to start the game."
+        self.opp_hand_val = Tkinter.StringVar(
+            root, value="Your opponent is waiting for you to start the game."
             " Game will record your win/lose record.")
 
-        self.player_hand_val = StringVar(
-            ROOT, value="You can tart playing by picking a hand."
+        self.player_hand_val = Tkinter.StringVar(
+            root, value="You can tart playing by picking a hand."
             " You can choose Rock, Paper, or Scissors.")
 
-        self.summary_val = StringVar(
-            ROOT, value="The rules are: Rock beats Scissors."
+        self.summary_val = Tkinter.StringVar(
+            root, value="The rules are: Rock beats Scissors."
             "Scissors beat Paper. Paper beats Rock.")
 
         # Define title for the app
-        ROOT.title("Rock-Paper-Scissors")
+        root.title("Rock-Paper-Scissors")
 
         # Defines the width and height of the window (can vary for different computers)
-        ROOT.geometry("579x216")
+        root.geometry("579x216")
 
         # Stops resizing of the window
-        ROOT.resizable(width=False, height=False)
+        root.resizable(width=False, height=False)
 
         # Customize the styling for the buttons and entry
         style = ttk.Style()
@@ -248,33 +247,33 @@ class RockPaperScissors(object):
         style.configure("TEntry", font="Serif 25", padding=10)
 
         # This displays the number of rounds played and the win/lose record
-        self.round_entry = ttk.Entry(ROOT, textvariable=self.round_val, width=92)
+        self.round_entry = ttk.Entry(root, textvariable=self.round_val, width=92)
         self.round_entry.grid(row=0, columnspan=3)
 
         # This displays the hand that the opponent has
 
-        self.opp_hand_entry = ttk.Entry(ROOT, textvariable=self.opp_hand_val, width=92)
+        self.opp_hand_entry = ttk.Entry(root, textvariable=self.opp_hand_val, width=92)
         self.opp_hand_entry.grid(row=1, columnspan=3)
 
         # This displays the hand that the player has
 
-        self.player_hand_entry = ttk.Entry(ROOT, textvariable=self.player_hand_val, width=92)
+        self.player_hand_entry = ttk.Entry(root, textvariable=self.player_hand_val, width=92)
         self.player_hand_entry.grid(row=2, columnspan=3)
 
         # This displays the winner of the round
 
-        self.summary_entry = ttk.Entry(ROOT, textvariable=self.summary_val, width=92)
+        self.summary_entry = ttk.Entry(root, textvariable=self.summary_val, width=92)
         self.summary_entry.grid(row=3, columnspan=3)
 
         # Contains three buttons: Rock, Paper, and Scissors
-        self.rock_button = ttk.Button(ROOT, text="Rock", command=lambda: self.button_press('r'))
+        self.rock_button = ttk.Button(root, text="Rock", command=lambda: self.button_press('r'))
         self.rock_button.grid(row=4, column=0)
 
-        self.paper_button = ttk.Button(ROOT, text="Paper", command=lambda: self.button_press('p'))
+        self.paper_button = ttk.Button(root, text="Paper", command=lambda: self.button_press('p'))
         self.paper_button.grid(row=4, column=1)
 
         self.scissor_button = ttk.Button(
-            ROOT, text="Scissors", command=lambda: self.button_press('s'))
+            root, text="Scissors", command=lambda: self.button_press('s'))
         self.scissor_button.grid(row=4, column=2)
 
 
@@ -282,10 +281,10 @@ class RockPaperScissors(object):
 if __name__ == '__main__':
 
     #Get the root window object
-    ROOT = Tk()
+    root = Tkinter.Tk()
 
     # Create the game
-    RPS = RockPaperScissors(ROOT)
+    RPS = RockPaperScissors(root)
 
     # Run the app until exited
-    ROOT.mainloop()
+    root.mainloop()
